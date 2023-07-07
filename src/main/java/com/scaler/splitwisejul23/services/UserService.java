@@ -1,6 +1,7 @@
 package com.scaler.splitwisejul23.services;
 
 import com.scaler.splitwisejul23.exceptions.UserAlreadyExistsException;
+import com.scaler.splitwisejul23.exceptions.UserDoesNotExistException;
 import com.scaler.splitwisejul23.models.User;
 import com.scaler.splitwisejul23.models.UserStatus;
 import com.scaler.splitwisejul23.repositories.UserRepository;
@@ -40,6 +41,16 @@ public class UserService {
         user.setPassword(password);
         user.setUserStatus(UserStatus.ACTIVE);
 
+        return userRepository.save(user);
+    }
+
+    public User updateUserProfile(Long username, String newPassword) throws UserDoesNotExistException {
+        Optional<User> userOptional = userRepository.findById(username);
+        if (userOptional.isEmpty()) {
+            throw new UserDoesNotExistException();
+        }
+        User user = userOptional.get();
+        user.setPassword(newPassword);
         return userRepository.save(user);
     }
 }
