@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterUserResponseDto extends BaseResponseDto {
-    private Long userId;
+public class ExpenseAddResponseDto extends BaseResponseDto {
+    private Long expenseId;
 }
