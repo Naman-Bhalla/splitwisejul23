@@ -15,6 +15,6 @@ public class User extends BaseModel {
     private String password;
     @Enumerated(EnumType.ORDINAL)
     private UserStatus userStatus;
-    @ManyToMany(mappedBy = "members")
+    @ManyToMany(mappedBy = "members", fetch = FetchType.EAGER)
     private List<Group> groups;
 }
