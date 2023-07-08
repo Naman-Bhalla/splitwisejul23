@@ -34,12 +34,28 @@ public class UserService {
             }
         }
 
+        Optional<User> userernameOptional = userRepository.findByName(username);
+        if(userernameOptional.isPresent()) {
+            throw new UserExistException("User is already exist in the system.");
+        }
+
         User user = new User();
         user.setPhone(phoneNumber);
         user.setName(userName);
         user.setPassword(password);
         user.setUserStatus(UserStatus.ACTIVE);
 
+        return userRepository.save(user);
+    }
+
+    public User updateProfile(String username, String password) throws UserNotExistException {
+        Optional<User> userernameOptional = userRepository.findByName(username);
+        if(userernameOptional.isEmpty()) {
+            throw new UserNotExistException("User is not exist in the system.");
+        }
+
+        User user = userernameOptional.get();
+        user.setPassword(password);
         return userRepository.save(user);
     }
 }
