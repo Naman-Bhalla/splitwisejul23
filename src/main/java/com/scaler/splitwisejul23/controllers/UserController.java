@@ -1,15 +1,16 @@
 package com.scaler.splitwisejul23.controllers;
 
-import com.scaler.splitwisejul23.dtos.RegisterUserRequestDto;
-import com.scaler.splitwisejul23.dtos.RegisterUserResponseDto;
-import com.scaler.splitwisejul23.dtos.UpdateProfileRequestDto;
-import com.scaler.splitwisejul23.dtos.UpdateProfileResponseDto;
+import com.scaler.splitwisejul23.dtos.*;
 import com.scaler.splitwisejul23.exceptions.UserAlreadyExistsException;
 import com.scaler.splitwisejul23.exceptions.UserDoesNotExistException;
+import com.scaler.splitwisejul23.models.Group;
 import com.scaler.splitwisejul23.models.User;
 import com.scaler.splitwisejul23.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -52,6 +53,28 @@ public class UserController {
         } catch (UserDoesNotExistException userDoesNotExistException) {
             response.setStatus(ResponseStatus.FAILURE);
             response.setMessage(userDoesNotExistException.getMessage());
+        }
+        return response;
+    }
+
+    public GetGroupsResponseDto getGroupsByUser(GetGroupsRequestDto request) {
+        GetGroupsResponseDto response = new GetGroupsResponseDto();
+        try {
+            List<Group> groups = userService.getGroupsOfUser(request.getUserId());
+            List<GetGroupsResponseDto.UserGroup> userGroups = new ArrayList<>();
+            for (Group group: groups) {
+                GetGroupsResponseDto.UserGroup userGroup = new GetGroupsResponseDto.UserGroup();
+                userGroup.setGroupId(group.getId());
+                userGroup.setName(group.getName());
+                userGroup.setDescription(group.getDescription());
+                userGroups.add(userGroup);
+            }
+            response.setUserGroups(userGroups);
+            response.setStatus(ResponseStatus.SUCCESS);
+            response.setMessage("Groups fetched successfully");
+        } catch (Exception e) {
+            response.setStatus(ResponseStatus.FAILURE);
+            response.setMessage(e.getMessage());
         }
         return response;
     }

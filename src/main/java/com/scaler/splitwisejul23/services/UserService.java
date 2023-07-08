@@ -2,12 +2,14 @@ package com.scaler.splitwisejul23.services;
 
 import com.scaler.splitwisejul23.exceptions.UserDoesNotExistException;
 import com.scaler.splitwisejul23.exceptions.UserAlreadyExistsException;
+import com.scaler.splitwisejul23.models.Group;
 import com.scaler.splitwisejul23.models.User;
 import com.scaler.splitwisejul23.models.UserStatus;
 import com.scaler.splitwisejul23.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -55,6 +57,21 @@ public class UserService {
             User user = userOptional.get();
             user.setPassword(newPassword);
             return userRepository.save(user);
+        } else {
+            throw new UserDoesNotExistException();
+        }
+    }
+
+    public List<Group> getGroupsOfUser(String userId) throws UserDoesNotExistException {
+        if (!Util.isValidId(userId)) {
+            throw new UserDoesNotExistException();
+        }
+        Long id = Long.parseLong(userId);
+        Optional<User> userOptional = userRepository.findById(id);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            return user.getGroups();
         } else {
             throw new UserDoesNotExistException();
         }

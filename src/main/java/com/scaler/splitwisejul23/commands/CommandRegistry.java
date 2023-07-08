@@ -14,13 +14,15 @@ public class CommandRegistry {
     public CommandRegistry(RegisterUserCommand registerUserCommand,
                            UpdateProfileCommand updateProfileCommand,
                            AddGroupCommand addGroupCommand,
-                           AddMemberCommand addMemberCommand
+                           AddMemberCommand addMemberCommand,
+                           GetGroupsCommand getGroupsCommand
     ) {
         commands = new ArrayList<>();
         commands.add(registerUserCommand);
         commands.add(updateProfileCommand);
         commands.add(addGroupCommand);
         commands.add(addMemberCommand);
+        commands.add(getGroupsCommand);
     }
 
     public void execute(String input) {
