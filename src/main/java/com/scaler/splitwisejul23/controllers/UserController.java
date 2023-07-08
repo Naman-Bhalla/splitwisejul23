@@ -2,7 +2,10 @@ package com.scaler.splitwisejul23.controllers;
 
 import com.scaler.splitwisejul23.dtos.RegisterUserRequestDto;
 import com.scaler.splitwisejul23.dtos.RegisterUserResponseDto;
+import com.scaler.splitwisejul23.dtos.UpdateUserProfileRequestDto;
+import com.scaler.splitwisejul23.dtos.UpdateUserProfileResponseDto;
 import com.scaler.splitwisejul23.exceptions.UserAlreadyExistsException;
+import com.scaler.splitwisejul23.exceptions.UserDoesNotExistException;
 import com.scaler.splitwisejul23.models.User;
 import com.scaler.splitwisejul23.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +40,19 @@ public class UserController {
         }
 
         return response;
+    }
+    public UpdateUserProfileResponseDto updateUserProfile(UpdateUserProfileRequestDto request){
+        User user;
+        try{
+            user = userService.updateUserProfile(request.getUsername(), request.getNewPassword());
+            return UpdateUserProfileResponseDto.builder().status("SUCCESS").userId(user.getId()).build();
+        }
+        catch (UserDoesNotExistException userDoesNotExistException){
+            return UpdateUserProfileResponseDto.builder()
+                    .status("FAILURE")
+                    .message(userDoesNotExistException.getMessage())
+                    .build();
+        }
+
     }
 }

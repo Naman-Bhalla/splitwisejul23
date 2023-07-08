@@ -36,9 +36,9 @@ public class RegisterUserCommand implements Command {
     public void execute(String input) {
         List<String> inpWords = Arrays.stream(input.split(" ")).toList();
 
-        String password = inpWords.get(1);
+        String password = inpWords.get(3);
         String phoneNumber = inpWords.get(2);
-        String username = inpWords.get(3);
+        String username = inpWords.get(1);
 
         RegisterUserRequestDto request = new RegisterUserRequestDto();
         request.setPassword(password);
