@@ -46,9 +46,7 @@ public class RegisterUserCommand implements Command {
         request.setUserName(username);
 
 
-        userController.registerUser(request);
-        // call user controller an get our action done
+        RegisterUserResponseDto response = userController.registerUser(request);
+        response.printResponse();
     }
 }
-
-// Break till 10:15 PM

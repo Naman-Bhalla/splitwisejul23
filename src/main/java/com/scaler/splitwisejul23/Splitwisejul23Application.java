@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication
+@EnableJpaAuditing
 public class Splitwisejul23Application implements CommandLineRunner {
     private Scanner scanner;
     private CommandRegistry commandRegistry;

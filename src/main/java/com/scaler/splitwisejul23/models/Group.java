@@ -1,6 +1,7 @@
 package com.scaler.splitwisejul23.models;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
@@ -14,10 +15,10 @@ import java.util.List;
 public class Group extends BaseModel {
     private String description;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<User> members;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     private User createdBy;
     private String name;
 }
