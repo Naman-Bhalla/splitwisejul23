@@ -38,4 +38,21 @@ public class UserController {
 
         return response;
     }
+
+    public UpdateProfileResponseDto updateProfile(UpdateProfileRequestDto requestDto) {
+        UpdateProfileResponseDto responseDto = new UpdateProfileResponseDto();
+        try {
+            User user = userService.updateProfile(requestDto.getUsername(), requestDto.getPassword());
+            responseDto.setId(user.getId());
+            responseDto.setStatus("Success");
+            responseDto.setMessage("Password Updated.");
+
+        } catch (UserNotExistException e) {
+            responseDto.setMessage("NOT FOUND");
+            responseDto.setMessage("User not exist, Please register");
+        } catch (Exception e) {
+            responseDto.setMessage("FAILED");
+        }
+        return responseDto;
+    }
 }
