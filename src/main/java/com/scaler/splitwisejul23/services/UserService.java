@@ -45,12 +45,10 @@ public class UserService {
     }
 
     public User updateProfile(String userId, String newPassword) throws UserDoesNotExistException {
-        Long id;
-        try {
-            id = Long.parseLong(userId);
-        } catch (NumberFormatException exception) {
+        if (!Util.isValidId(userId)) {
             throw new UserDoesNotExistException();
         }
+        Long id = Long.parseLong(userId);
         Optional<User> userOptional = userRepository.findById(id);
 
         if (userOptional.isPresent()) {

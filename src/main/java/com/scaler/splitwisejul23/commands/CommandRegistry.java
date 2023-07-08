@@ -11,10 +11,14 @@ public class CommandRegistry {
     private List<Command> commands;
 
     @Autowired
-    public CommandRegistry(RegisterUserCommand registerUserCommand, UpdateProfileCommand updateProfileCommand) {
+    public CommandRegistry(RegisterUserCommand registerUserCommand,
+                           UpdateProfileCommand updateProfileCommand,
+                           AddGroupCommand addGroupCommand
+    ) {
         commands = new ArrayList<>();
         commands.add(registerUserCommand);
         commands.add(updateProfileCommand);
+        commands.add(addGroupCommand);
     }
 
     public void execute(String input) {
