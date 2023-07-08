@@ -2,7 +2,6 @@ package com.scaler.splitwisejul23.commands;
 
 import com.scaler.splitwisejul23.controllers.UserController;
 import com.scaler.splitwisejul23.dtos.RegisterUserRequestDto;
-import com.scaler.splitwisejul23.dtos.RegisterUserResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +11,7 @@ import java.util.List;
 @Component
 public class RegisterUserCommand implements Command {
 // Register vinsmokesanji 003 namisswwaann
-    private UserController userController;
+    private final UserController userController;
 
     @Autowired
     public RegisterUserCommand(UserController userController) {

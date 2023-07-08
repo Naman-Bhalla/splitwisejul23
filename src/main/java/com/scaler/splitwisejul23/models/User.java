@@ -10,11 +10,12 @@ import java.util.List;
 @Setter
 @Entity
 public class User extends BaseModel {
+
     private String name;
     private String phone;
     private String password;
     @Enumerated(EnumType.ORDINAL)
     private UserStatus userStatus;
-    @ManyToMany(mappedBy = "members")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "members")
     private List<Group> groups;
 }
