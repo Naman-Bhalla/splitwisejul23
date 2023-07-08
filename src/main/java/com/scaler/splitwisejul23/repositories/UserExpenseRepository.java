@@ -14,7 +14,7 @@ public interface UserExpenseRepository extends JpaRepository<UserExpense, Long> 
     @Override
     Optional<UserExpense> findById(Long aLong);
 
-    Optional<List<UserExpense>> findByUser(User user);
+    Optional<List<UserExpense>> findAllByUser(User user);
 
     UserExpense save(UserExpense userExpense);
 }

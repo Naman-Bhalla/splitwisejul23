@@ -2,7 +2,6 @@ package com.scaler.splitwisejul23.services;
 
 import com.scaler.splitwisejul23.exceptions.UserExpenseNotFoundException;
 import com.scaler.splitwisejul23.exceptions.UserNotFoundException;
-import com.scaler.splitwisejul23.models.ExpenseType;
 import com.scaler.splitwisejul23.models.User;
 import com.scaler.splitwisejul23.models.UserExpense;
 import com.scaler.splitwisejul23.repositories.UserExpenseRepository;
@@ -31,7 +30,7 @@ public class UserExpenseService {
             throw new UserNotFoundException();
         }
         User user = userOptional.get();
-        Optional<List<UserExpense>> expensesOptional = userExpenseRepository.findByUser(user);
+        Optional<List<UserExpense>> expensesOptional = userExpenseRepository.findAllByUser(user);
         if (expensesOptional.isEmpty()) {
             throw new UserExpenseNotFoundException();
         }

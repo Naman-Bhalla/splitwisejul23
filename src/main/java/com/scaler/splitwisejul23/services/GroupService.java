@@ -29,7 +29,7 @@ public class GroupService {
         if (userOptional.isEmpty()) {
             throw new UserNotFoundException();
         }
-        Optional<List<Group>> groupListOptional = groupRepository.findByMembers(userOptional.get());
+        Optional<List<Group>> groupListOptional = groupRepository.findAllByMembers(userOptional.get());
         if (groupListOptional.isEmpty()) {
             throw new GroupNotFoundException();
         }
