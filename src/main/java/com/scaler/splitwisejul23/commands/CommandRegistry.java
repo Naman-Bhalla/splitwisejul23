@@ -11,9 +11,17 @@ public class CommandRegistry {
     private List<Command> commands;
 
     @Autowired
-    public CommandRegistry(RegisterUserCommand registerUserCommand) {
+    public CommandRegistry(RegisterUserCommand registerUserCommand,
+                           UpdateProfileCommand updateProfileCommand,
+                           UserGroupsListCommand userGroupsListCommand,
+                           UserHistoryCommand userHistoryCommand,
+                           ExpenseGroupEqualAddCommand expenseGroupEqualAddCommand) {
         commands = new ArrayList<>();
         commands.add(registerUserCommand);
+        commands.add(updateProfileCommand);
+        commands.add(userGroupsListCommand);
+        commands.add(userHistoryCommand);
+        commands.add(expenseGroupEqualAddCommand);
     }
 
     public void execute(String input) {

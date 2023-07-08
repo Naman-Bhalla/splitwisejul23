@@ -10,7 +10,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Component
-public class RegisterUserCommand implements Command {
+public class    RegisterUserCommand implements Command {
 // Register vinsmokesanji 003 namisswwaann
     private UserController userController;
 

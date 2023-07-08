@@ -19,5 +19,6 @@ public class Group extends BaseModel {
 
     @ManyToOne
     private User createdBy;
+
     private String name;
 }

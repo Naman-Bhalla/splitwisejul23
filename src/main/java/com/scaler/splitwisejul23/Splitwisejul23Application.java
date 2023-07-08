@@ -1,15 +1,11 @@
 package com.scaler.splitwisejul23;
 
-import com.scaler.splitwisejul23.commands.Command;
 import com.scaler.splitwisejul23.commands.CommandRegistry;
-import com.scaler.splitwisejul23.commands.RegisterUserCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 @SpringBootApplication

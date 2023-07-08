@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegisterUserResponseDto extends BaseResponseDto {
-    private Long userId;
+public class BaseResponseDto {
+    private String status;
+    private String message;
 }
