@@ -3,6 +3,7 @@ package com.scaler.splitwisejul23;
 import com.scaler.splitwisejul23.commands.Command;
 import com.scaler.splitwisejul23.commands.CommandRegistry;
 import com.scaler.splitwisejul23.commands.RegisterUserCommand;
+import com.scaler.splitwisejul23.commands.UpdateProfileCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
